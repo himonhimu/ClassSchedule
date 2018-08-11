@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.zip.Inflater;
 
 /**
@@ -15,9 +16,9 @@ import java.util.zip.Inflater;
  */
 
 class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
-    ArrayList<String> users;
+    List<NotesModel> users;
 
-    public UserAdapter(ArrayList<String> users) {
+    public UserAdapter(List<NotesModel> users) {
         this.users =users;
     }
 
@@ -32,7 +33,8 @@ class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull UserAdapter.ViewHolder holder, int position) {
-        holder.mtext.setText(users.get(position));
+        holder.noteTitle.setText(users.get(position).getTitleText());
+        holder.noteBody.setText(users.get(position).getBodyText());
 
     }
 
@@ -42,10 +44,11 @@ class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView mtext;
+        TextView noteTitle, noteBody;
         public ViewHolder(View itemView) {
             super(itemView);
-            mtext = itemView.findViewById(R.id.textMe);
+            noteTitle= itemView.findViewById(R.id.NoteTitle);
+            noteBody = itemView.findViewById(R.id.noteBody);
         }
     }
 }

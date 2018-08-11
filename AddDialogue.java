@@ -15,7 +15,7 @@ public class AddDialogue extends Dialog implements View.OnClickListener{
 
     Activity a;
     public Dialog d;
-    EditText fname, lname, email;
+    EditText fname, lname;
     Button save;
 
     public AddDialogue(Activity a) {
@@ -31,8 +31,9 @@ public class AddDialogue extends Dialog implements View.OnClickListener{
 
         fname = findViewById(R.id.first_name);
         lname = findViewById(R.id.last_name);
-        email = findViewById(R.id.email);
         save = findViewById(R.id.save_button);
+
+
 
 
     }
