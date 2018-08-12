@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,10 +46,31 @@ class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView noteTitle, noteBody;
-        public ViewHolder(View itemView) {
+        public ViewHolder(final View itemView) {
             super(itemView);
             noteTitle= itemView.findViewById(R.id.NoteTitle);
             noteBody = itemView.findViewById(R.id.noteBody);
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    users.remove(getAdapterPosition());
+                    notifyItemRemoved(getAdapterPosition());
+                   notifyItemRangeChanged(getAdapterPosition(), users.size());
+                   notifyDataSetChanged();
+
+                    return true;
+                }
+            });
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int p = getLayoutPosition();
+                    Toast.makeText(view.getContext(), "You Clicked : "+p, Toast.LENGTH_SHORT).show();
+                }
+            });
         }
+
     }
 }
