@@ -1,8 +1,10 @@
 package bd.himu.himon.classschedule;
 
 import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import java.util.List;
 
@@ -14,7 +16,15 @@ import java.util.List;
 public abstract class ClassDao {
     @Query("SELECT * FROM ClassTable")
     abstract List<NotesModel> getAllClass();
+
+
     @Insert
-    abstract void insetAll(NotesModel...users);
+    abstract void insertAll(NotesModel... users);
+
+    @Delete
+    abstract void deletenow(NotesModel id);
+
+   @Update
+    abstract void update(NotesModel notesModel);
 
 }
